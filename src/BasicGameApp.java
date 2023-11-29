@@ -40,9 +40,14 @@ public class BasicGameApp implements Runnable {
 	public BufferStrategy bufferStrategy;
 	public Image astroPic;
 
+	public Image astro2pic;
+	public Image background;
+
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
 	private Astronaut astro;
+
+	private Astronaut astro2;
 
 
    // Main method definition
@@ -66,6 +71,10 @@ public class BasicGameApp implements Runnable {
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
 		astro = new Astronaut((int)(Math.random()*940),(int)(Math.random()*640));
 
+		astro2pic= Toolkit.getDefaultToolkit().getImage("astronaut.png");
+		astro2 = new Astronaut((int)(Math.random()*940),(int)(Math.random()*640));
+
+		background = Toolkit.getDefaultToolkit().getImage("stars.jpg"); //load the picture
 
 	}// BasicGameApp()
 
@@ -93,6 +102,11 @@ public class BasicGameApp implements Runnable {
 	{
       //calls the move( ) code in the objects
 		astro.wrap();
+		astro2.bounce();
+		if(astro.rec.intersects(astro2.rec)){
+
+			System.out.println("Crash");
+		};
 
 	}
 	
@@ -141,9 +155,12 @@ public class BasicGameApp implements Runnable {
 	private void render() {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
+		g.drawImage(background, 0, 0, WIDTH, HEIGHT,  null);
 
       //draw the image of the astronaut
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
+		g.drawImage(astro2pic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+
 
 		g.dispose();
 
