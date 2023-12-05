@@ -103,15 +103,24 @@ public class BasicGameApp implements Runnable {
       //calls the move( ) code in the objects
 		astro.wrap();
 		astro2.bounce();
-		if(astro.rec.intersects(astro2.rec)){
+		if(astro.rec.intersects(astro2.rec) && astro.isCrashing==false){
 
 			astro.intersect();
 			astro2.intersect();
 
+			astro.height=astro.height+50;
+			astro.width=astro.width+50;
+			astro.isCrashing=true;
+
 
 			System.out.println("Crash");
 
-		};
+		}
+
+if(astro.rec.intersects(astro2.rec)==false){
+
+	astro.isCrashing=false;
+}
 
 	}
 	
