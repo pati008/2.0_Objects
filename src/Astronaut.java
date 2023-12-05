@@ -58,6 +58,12 @@ public class Astronaut {
         ypos = ypos + dy;
         rec= new Rectangle(xpos,ypos, width, height);
     }
+
+    public void intersect(){
+        xpos = xpos + dx;
+        ypos = ypos + dy;
+        rec= new Rectangle(xpos,ypos, width, height);
+    }
     public void wrap(){
         if (xpos<0){
             xpos=940;
