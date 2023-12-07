@@ -41,6 +41,8 @@ public class BasicGameApp implements Runnable {
 	public Image astroPic;
 
 	public Image astro2pic;
+
+	public Image astro3pic;
 	public Image background;
 
    //Declare the objects used in the program
@@ -48,6 +50,8 @@ public class BasicGameApp implements Runnable {
 	private Astronaut astro;
 
 	private Astronaut astro2;
+
+	private Astronaut astro3;
 
 
    // Main method definition
@@ -73,6 +77,9 @@ public class BasicGameApp implements Runnable {
 
 		astro2pic= Toolkit.getDefaultToolkit().getImage("astronaut.png");
 		astro2 = new Astronaut((int)(Math.random()*940),(int)(Math.random()*640));
+
+		astro3pic= Toolkit.getDefaultToolkit().getImage("astronaut.png");
+		astro3 = new Astronaut((int)(Math.random()*940),(int)(Math.random()*640));
 
 		background = Toolkit.getDefaultToolkit().getImage("stars.jpg"); //load the picture
 
@@ -103,10 +110,10 @@ public class BasicGameApp implements Runnable {
       //calls the move( ) code in the objects
 		astro.wrap();
 		astro2.bounce();
+		astro3.bounce();
 		if(astro.rec.intersects(astro2.rec) && astro.isCrashing==false){
 
-			astro.intersect();
-			astro2.intersect();
+
 
 			astro.height=astro.height+50;
 			astro.width=astro.width+50;
@@ -121,8 +128,48 @@ if(astro.rec.intersects(astro2.rec)==false){
 
 	astro.isCrashing=false;
 }
+		if(astro.rec.intersects(astro3.rec) && astro.isCrashing==false){
+
+
+
+			astro3.height=astro3.height-5;
+			astro3.width=astro3.width-5;
+			astro3.isCrashing=true;
+
+
+			System.out.println("Crash");
+
+		}
+
+		if(astro.rec.intersects(astro3.rec)==false){
+
+			astro.isCrashing=false;
+		}
+
+		if(astro2.rec.intersects(astro3.rec) && astro.isCrashing==false){
+
+
+
+			astro2.intersect();
+			astro3.intersect();
+			astro3.isCrashing=true;
+
+
+			System.out.println("Crash");
+
+		}
+
+		if(astro2.rec.intersects(astro3.rec)==false){
+
+			astro2.isCrashing=false;
+		}
+
+
+
 
 	}
+
+
 	
    //Pauses or sleeps the computer for the amount specified in milliseconds
    public void pause(int time ){
@@ -174,6 +221,7 @@ if(astro.rec.intersects(astro2.rec)==false){
       //draw the image of the astronaut
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
 		g.drawImage(astro2pic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+		g.drawImage(astro3pic, astro3.xpos, astro3.ypos, astro3.width, astro3.height, null);
 
 
 		g.dispose();
