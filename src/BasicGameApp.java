@@ -123,6 +123,7 @@ public class BasicGameApp implements Runnable {
 			System.out.println("Crash");
 
 		}
+		//...
 
 if(astro.rec.intersects(astro2.rec)==false){
 

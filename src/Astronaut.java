@@ -61,7 +61,7 @@ public class Astronaut {
         ypos = ypos + dy;
         rec= new Rectangle(xpos,ypos, width, height);
     }
-
+//yo
     public void intersect(){
         xpos = xpos + dx;
         ypos = ypos + dy;
